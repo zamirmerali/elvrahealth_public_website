@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elvra Health — AI-Powered Referral Management for Specialty Clinics</title>
+  <meta name="description" content="Elvra Health helps specialty medical clinics triage, summarize, and manage incoming referrals — saving hours per day with AI-powered insights. HIPAA and PHIPA compliant.">
+  <meta property="og:title" content="Elvra Health — AI-Powered Referral Management">
+  <meta property="og:description" content="Stop reading referral packages. Elvra reads them for you — extracting key information, triaging urgency, and flagging missing tests. HIPAA & PHIPA compliant.">
+  <meta property="og:image" content="assets/screenshot.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ================================================
+     NAVIGATION
+     ================================================ -->
+<nav class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="#" class="nav__logo" aria-label="Elvra Health home">
+      <svg class="nav__logo-icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="30" height="30" rx="7" fill="#22c55e"/>
+        <path d="M9 15.5L13.5 20L21 10.5" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Elvra <span class="nav__logo-sub">&nbsp;Health</span>
+    </a>
+
+    <ul class="nav__links" role="list">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#compliance">Compliance</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+    </ul>
+
+    <div class="nav__right">
+      <a href="#demo" class="btn btn-primary btn-sm">Book a Demo</a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav__mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="#how-it-works">How It Works</a>
+    <a href="#features">Features</a>
+    <a href="#compliance">Compliance</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#demo" style="margin-top:.5rem;" class="btn btn-primary" >Book a Demo</a>
+  </nav>
+</nav>
+
+<!-- ================================================
+     HERO
+     ================================================ -->
+<section class="hero" id="hero">
+  <div class="container hero__inner" style="padding-right:0;">
+
+    <!-- Left: Text -->
+    <div class="hero__text">
+      <span class="eyebrow">AI for Specialty Clinics</span>
+
+      <h1 class="hero__title">
+        AI-Powered Referral<br>Management for<br>Specialty Clinics
+      </h1>
+
+      <p class="hero__sub">
+        Elvra reads incoming referral documents and triages urgency, leaving you more time to spend with your patients.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="#how-it-works" class="btn btn-secondary btn-lg">See How It Works</a>
+      </div>
+    </div>
+
+    <!-- Right: App Mockup -->
+    <div class="hero__visual">
+      <div class="hero__mockup-wrap">
+        <div class="hero__mockup-glow"></div>
+        <div class="hero__mockup">
+          <!-- Real screenshot shown when file exists -->
+          <img
+            src="assets/screenshot.png"
+            alt="Elvra Health dashboard showing referral triage interface"
+            id="heroScreenshot"
+            style="display:none;"
+            onload="this.style.display='block'; document.getElementById('uiMockup').style.display='none';"
+          >
+          <!-- Inline HTML UI mockup (shown until screenshot.png is placed) -->
+          <div class="ui-mockup" id="uiMockup">
+            <!-- Top bar -->
+            <div class="ui-mockup__topbar">
+              <div class="ui-mockup__logo">
+                <div class="ui-mockup__logo-dot">
+                  <svg width="8" height="8" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                Elvra Health &nbsp;·&nbsp; Referral Triage
+              </div>
+              <div class="ui-mockup__nav">
+                <span class="ui-mockup__nav-item active">Dashboard</span>
+                <span class="ui-mockup__nav-item">Analytics</span>
+                <span class="ui-mockup__nav-item">Settings</span>
+              </div>
+              <div class="ui-mockup__user">
+                <svg width="8" height="8" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                Dr. Smith &nbsp;▾
+              </div>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="ui-mockup__body">
+              <div class="ui-mockup__toolbar">
+                <div class="ui-mockup__tabs">
+                  <span class="ui-mockup__tab active">All — 5</span>
+                  <span class="ui-mockup__tab">Error — 0</span>
+                  <span class="ui-mockup__tab green">Triaged — 3</span>
+                  <span class="ui-mockup__tab amber">Triaging — 2</span>
+                  <span class="ui-mockup__tab red">Urgent — 1</span>
+                </div>
+                <div class="ui-mockup__actions">
+                  <button class="ui-mockup__btn ui-mockup__btn--green">AI Draft Triage</button>
+                  <button class="ui-mockup__btn ui-mockup__btn--outline">Upload PDF</button>
+                </div>
+              </div>
+
+              <!-- Table -->
+              <table class="ui-mockup__table">
+                <thead>
+                  <tr>
+                    <th class="ui-mockup__th" style="width:18%">Status</th>
+                    <th class="ui-mockup__th" style="width:18%">Patient Name</th>
+                    <th class="ui-mockup__th" style="width:16%">File</th>
+                    <th class="ui-mockup__th" style="width:14%">Urgency</th>
+                    <th class="ui-mockup__th">Referral Summary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="ui-mockup__tr">
+                    <td class="ui-mockup__td"><span class="ui-mockup__status ui-mockup__status--triaged">✓ Triaged</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__patient">Matossian, T.</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__filename">referral9.pdf</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__urgency ui-mockup__urgency--semi">Semi-urgent</span></td>
+                    <td class="ui-mockup__td"><div class="ui-mockup__summary-text">Consult for 6mm frontal lobe cavernoma. Patient presents with seizures, neurology follow-up recommended.</div></td>
+                  </tr>
+                  <tr class="ui-mockup__tr">
+                    <td class="ui-mockup__td"><span class="ui-mockup__status ui-mockup__status--triaged">✓ Triaged</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__patient">Hart, A. J.</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__filename">referral8.pdf</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__urgency ui-mockup__urgency--semi">Semi-urgent</span></td>
+                    <td class="ui-mockup__td"><div class="ui-mockup__summary-text">Bilateral leg pain / discomfort. Likely spinal stenosis. MRI lumbar spine pending review.</div></td>
+                  </tr>
+                  <tr class="ui-mockup__tr">
+                    <td class="ui-mockup__td"><span class="ui-mockup__status ui-mockup__status--triaging">⟳ Triaging</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__patient">—</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__filename">referral3.pdf</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__urgency" style="background:#f3f4f6;color:#6b7280;">—</span></td>
+                    <td class="ui-mockup__td"><div class="ui-mockup__summary-text" style="color:#d1d5db;">Generating summary…</div></td>
+                  </tr>
+                  <tr class="ui-mockup__tr">
+                    <td class="ui-mockup__td"><span class="ui-mockup__status ui-mockup__status--triaged">✓ Triaged</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__patient">Ali, Kharoon</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__filename">referral10.pdf</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__urgency ui-mockup__urgency--urgent">Urgent</span></td>
+                    <td class="ui-mockup__td"><div class="ui-mockup__summary-text">Left foot drop &amp; severe spinal stenosis on MRI. Motor weakness noted. Urgent surgical consult advised.</div></td>
+                  </tr>
+                  <tr class="ui-mockup__tr">
+                    <td class="ui-mockup__td"><span class="ui-mockup__status ui-mockup__status--triaged">✓ Triaged</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__patient">Johal, Preet</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__filename">referral7.pdf</span></td>
+                    <td class="ui-mockup__td"><span class="ui-mockup__urgency ui-mockup__urgency--routine">Routine</span></td>
+                    <td class="ui-mockup__td"><div class="ui-mockup__summary-text">Chronic low back pain, 12 months duration. Conservative treatment tried. Requesting physiotherapy assessment.</div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- End UI mockup -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================
+     PROBLEM SECTION
+     ================================================ -->
+<section class="problem-section" id="problem">
+  <div class="container">
+
+    <div class="problem-section__header">
+      <span class="eyebrow problem-section__eyebrow">Sound Familiar?</span>
+      <h2 class="problem-section__title">Your team is drowning in referral paperwork. Somewhere in that stack is a patient who can't wait.</h2>
+    </div>
+
+    <object type="image/svg+xml" data="assets/elvra_problem_icons.svg" class="problem-section__icons" aria-label="Three common referral problems: The 28-Page Fax, The Missing Investigation, The Buried Emergency"></object>
+
+  </div>
+</section>
+
+<!-- Wave divider: yellow → gray -->
+<div class="wave-divider" style="background:#FFD708;" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#f9fafb"/>
+  </svg>
+</div>
+
+<!-- ================================================
+     HOW IT WORKS
+     ================================================ -->
+<section class="section section--gray" id="how-it-works" style="padding-top:4rem;">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">How It Works</span>
+      <h2 class="display">From Fax to Decision<br>in Seconds</h2>
+      <p class="lead lead--center">Elvra plugs into your existing fax and document workflow. No new hardware. No EHR migration. Just clarity.</p>
+    </div>
+
+    <ol class="steps-list">
+
+      <li class="step-item reveal">
+        <span class="step-num">1</span>
+        <div class="step-content">
+          <h3 class="step-title">Instant Referral Extraction</h3>
+          <p class="step-body">Elvra reads every page of an incoming referral, pulling patient demographics, diagnosis, referring physician, and clinical history.</p>
+        </div>
+      </li>
+
+      <li class="step-item reveal reveal-delay-1">
+        <span class="step-num">2</span>
+        <div class="step-content">
+          <h3 class="step-title">AI-Generated Summaries</h3>
+          <p class="step-body">Physicians and admins receive a concise, structured summary of every referral. Understand the full clinical picture in under 30 seconds. No more reading 28-page packages.</p>
+        </div>
+      </li>
+
+      <li class="step-item reveal reveal-delay-2">
+        <span class="step-num">3</span>
+        <div class="step-content">
+          <h3 class="step-title">Urgency Triage</h3>
+          <p class="step-body">Elvra applies AI trained on hundreds of specialty referrals to categorize each referral so your booking team always knows what to prioritize and why.</p>
+        </div>
+      </li>
+
+      <li class="step-item reveal reveal-delay-3">
+        <span class="step-num">4</span>
+        <div class="step-content">
+          <h3 class="step-title">Missing Investigation Alerts</h3>
+          <p class="step-body">Incomplete referrals delay care. Elvra flags missing bloodwork, imaging, or consult notes and prompts your admin team to follow up before the appointment is booked.</p>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+<!-- Wave divider: gray → dark -->
+<div class="wave-divider" style="background:#f9fafb;" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,20 C480,55 960,0 1440,35 L1440,60 L0,60 Z" fill="#111827"/>
+  </svg>
+</div>
+
+<!-- ================================================
+     SCREENSHOT SHOWCASE
+     ================================================ -->
+<section class="section section--dark" id="features" style="padding-top:4rem;">
+  <div class="container">
+    <div class="showcase__inner">
+
+      <div class="reveal">
+        <span class="eyebrow showcase__eyebrow">See It In Action</span>
+        <h2 class="display showcase__title" style="margin-bottom:1.25rem;">Everything Your Team Needs,<br>In One View</h2>
+        <p class="showcase__body">Elvra's dashboard gives your clinic a real-time view of every referral — its status, urgency, AI summary, and any flags needing attention. Designed with admins and physicians in mind.</p>
+        <ul class="showcase__list" role="list">
+          <li class="showcase__list-item">
+            <span class="check-circle" aria-hidden="true">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+            </span>
+            Referral inbox with real-time status tracking
+          </li>
+          <li class="showcase__list-item">
+            <span class="check-circle" aria-hidden="true">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+            </span>
+            One-click physician review and sign-off
+          </li>
+          <li class="showcase__list-item">
+            <span class="check-circle" aria-hidden="true">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+            </span>
+            Integrated physician-to-admin communication
+          </li>
+          <li class="showcase__list-item">
+            <span class="check-circle" aria-hidden="true">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+            </span>
+            Audit-ready logs for every referral action
+          </li>
+        </ul>
+        <a href="#demo" class="btn btn-primary">Book a Demo</a>
+      </div>
+
+      <div class="showcase__image-wrap reveal">
+        <img
+          src="assets/screenshot.png"
+          alt="Elvra Health referral management dashboard"
+          class="showcase__screenshot"
+          loading="lazy"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <div class="showcase__screenshot-placeholder" style="display:none;">
+          <span>App screenshot</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Wave divider: dark → white -->
+<div class="wave-divider" style="background:#111827;" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,10 1080,55 1440,20 L1440,60 L0,60 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<!-- ================================================
+     COMPLIANCE
+     ================================================ -->
+<section class="section" id="compliance" style="padding-top:4rem;">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Trust &amp; Compliance</span>
+      <h2 class="display">Built for the Privacy Standards<br>Healthcare Demands</h2>
+      <p class="lead lead--center">Patient data is sacred. Elvra was designed from the ground up to meet the strictest privacy regulations in North America.</p>
+    </div>
+
+    <div class="compliance__cards">
+
+      <div class="compliance-card reveal">
+        <span class="compliance-card__geo">United States</span>
+        <svg class="compliance-card__shield" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="48" height="48" rx="12" fill="#dcfce7"/>
+          <path d="M24 10L14 14.5V23C14 29.075 18.4 34.74 24 36.25C29.6 34.74 34 29.075 34 23V14.5L24 10Z" fill="#22c55e" opacity="0.3" stroke="#22c55e" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M19.5 23L22.5 26L28.5 20" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="compliance-card__title">HIPAA Compliant</h3>
+        <p class="compliance-card__body">Elvra meets all requirements of the Health Insurance Portability and Accountability Act. Patient data is encrypted at rest and in transit, access is strictly role-based, and a complete audit log is maintained for every action on every referral.</p>
+      </div>
+
+      <div class="compliance-card reveal">
+        <span class="compliance-card__geo">Canada</span>
+        <svg class="compliance-card__shield" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="48" height="48" rx="12" fill="#dcfce7"/>
+          <path d="M24 10L14 14.5V23C14 29.075 18.4 34.74 24 36.25C29.6 34.74 34 29.075 34 23V14.5L24 10Z" fill="#22c55e" opacity="0.3" stroke="#22c55e" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M19.5 23L22.5 26L28.5 20" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="compliance-card__title">PHIPA Compliant</h3>
+        <p class="compliance-card__body">Elvra complies with Ontario's Personal Health Information Protection Act and aligns with provincial privacy standards across Canada. Your patients' health information stays protected and your clinic stays audit-ready at all times.</p>
+      </div>
+
+    </div>
+
+    <div class="compliance__trust-row reveal">
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        End-to-end encryption
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+        </svg>
+        Canadian data residency available
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        SOC 2 aligned practices
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Wave divider: white → gray -->
+<div class="wave-divider" style="background:white;" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,10 C480,50 960,5 1440,40 L1440,60 L0,60 Z" fill="#f9fafb"/>
+  </svg>
+</div>
+
+<!-- ================================================
+     TESTIMONIALS
+     ================================================ -->
+<section class="section section--gray" id="testimonials" style="padding-top:4rem;">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Testimonials</span>
+      <h2 class="display">Trusted by Clinicians<br>Who've Seen the Difference</h2>
+      <p class="lead lead--center">Hear from physicians and clinic teams using Elvra every day.</p>
+    </div>
+
+    <div class="testimonial-wrap reveal">
+      <div class="testimonial-card">
+        <span class="testimonial-card__mark" aria-hidden="true">&ldquo;</span>
+        <p class="testimonial-card__quote">
+          We used to spend nearly an hour every morning just triaging our referral fax queue. With Elvra, that's down to under ten minutes. The urgency flags are accurate, the summaries are genuinely useful, and our booking staff actually understands what they're looking at. It's changed how our whole team starts the day.
+        </p>
+        <div class="testimonial-card__footer">
+          <div class="testimonial-card__person">
+            <div class="testimonial-card__avatar" aria-hidden="true">MK</div>
+            <div>
+              <div class="testimonial-card__name">Dr. Mihaly Kis</div>
+              <div class="testimonial-card__role">Gastroenterologist &mdash; Private Specialty Clinic &middot; Toronto, ON</div>
+            </div>
+          </div>
+          <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Wave divider: gray → dark -->
+<div class="wave-divider" style="background:#f9fafb;" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,35 C480,5 960,55 1440,15 L1440,60 L0,60 Z" fill="#111827"/>
+  </svg>
+</div>
+
+<!-- ================================================
+     DEMO FORM
+     ================================================ -->
+<section class="section section--green" id="demo" style="padding-top:5rem;">
+  <div class="container">
+    <div class="demo__inner">
+
+      <!-- Left: copy -->
+      <div class="reveal">
+        <span class="eyebrow">Get Started</span>
+        <h2 class="display" style="margin-bottom:1rem;">See Elvra<br>in Action</h2>
+        <p class="lead">Book a personalized 20-minute demo. We'll walk through your clinic's current referral workflow and show you exactly how Elvra fits in.</p>
+
+        <ul class="demo__perks" role="list">
+          <li class="demo__perk">
+            <span class="check-circle" style="background:rgba(34,197,94,0.15); border-color:rgba(34,197,94,0.3);" aria-hidden="true">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#22c55e;"><polyline points="2 6 5 9 10 3"/></svg>
+            </span>
+            No long sales call — just a focused, practical demo
+          </li>
+          <li class="demo__perk">
+            <span class="check-circle" style="background:rgba(34,197,94,0.15); border-color:rgba(34,197,94,0.3);" aria-hidden="true">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#22c55e;"><polyline points="2 6 5 9 10 3"/></svg>
+            </span>
+            See it work on real referral workflows
+          </li>
+          <li class="demo__perk">
+            <span class="check-circle" style="background:rgba(34,197,94,0.15); border-color:rgba(34,197,94,0.3);" aria-hidden="true">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#22c55e;"><polyline points="2 6 5 9 10 3"/></svg>
+            </span>
+            Response within one business day
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: form -->
+      <div class="reveal">
+        <form class="demo-form" id="demoForm" novalidate>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Dr. Jane Smith" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="company">Clinic or Organization Name</label>
+            <input type="text" id="company" name="company" placeholder="Westside Gastroenterology Clinic" autocomplete="organization" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@yourclinic.com" autocomplete="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (416) 555-0100" autocomplete="tel" required>
+          </div>
+          <div class="demo-form__submit">
+            <button type="submit" class="btn btn-primary btn-full btn-lg">Book My Demo &rarr;</button>
+          </div>
+          <p class="demo-form__privacy">We respect your privacy. No spam, ever.</p>
+        </form>
+
+        <div class="demo-form__success" id="formSuccess" role="alert">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" style="margin:0 auto 1rem;" aria-hidden="true">
+            <circle cx="22" cy="22" r="22" fill="rgba(34,197,94,0.15)"/>
+            <path d="M13 22l6 6 12-13" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Thanks! We'll be in touch within one business day.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     FOOTER
+     ================================================ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <a href="#" class="footer__logo" aria-label="Elvra Health home">
+          <svg width="26" height="26" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="30" height="30" rx="7" fill="#22c55e"/>
+            <path d="M9 15.5L13.5 20L21 10.5" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Elvra Health
+        </a>
+        <p class="footer__tagline">AI-powered referral management for specialty medical clinics. Purpose-built for the way modern clinics work.</p>
+        <div class="footer__compliance">
+          <span class="footer__pill">HIPAA</span>
+          <span class="footer__pill">PHIPA</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Product</p>
+        <ul class="footer__links" role="list">
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#compliance">Compliance</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#demo">Book a Demo</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__col-title">Company</p>
+        <ul class="footer__links" role="list">
+          <li><a href="mailto:hello@elvrahealth.com">hello@elvrahealth.com</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; 2025 Elvra Health Inc. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
