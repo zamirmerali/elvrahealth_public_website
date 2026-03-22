@@ -717,8 +717,26 @@ h2.display--white { color: var(--color-white); }
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible; /* let canvas draw into the wave zone below */
-  padding-bottom: 60px; /* extra height so canvas reaches into the wave */
+  overflow: hidden;
+}
+
+/* Wave lives inside the section — pages fall behind it, gray fill masks
+   anything below the curve, transparent above shows yellow + pages */
+.problem-section__wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  z-index: 15; /* above canvas (5), below text content (20) */
+  line-height: 0;
+  pointer-events: none;
+}
+
+.problem-section__wave svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .problem-section__canvas {
@@ -1594,14 +1612,6 @@ h2.display--white { color: var(--color-white); }
   margin-bottom: -1px;
 }
 
-/* Problem section wave: overlaps the bottom of the yellow section so
-   falling pages render behind it — canvas z-index 5, wave z-index 10 */
-.wave-divider--problem {
-  position: relative;
-  z-index: 10;
-  margin-top: -60px;   /* pull up by the same amount as section padding-bottom */
-  background: transparent; /* yellow section bg shows through above the curve */
-}
 
 .wave-divider svg {
   display: block;
