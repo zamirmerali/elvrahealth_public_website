@@ -477,12 +477,12 @@ h2.display--white { color: var(--color-white); }
 .hero__mockup-wrap::before {
   content: '';
   position: absolute;
-  inset: 8% -2rem 8% -3rem; /* extends left to spill glow onto the text column */
-  background: radial-gradient(ellipse at 40% 50%,
-    rgba(138, 148, 255, 0.32) 0%,
-    rgba(138, 148, 255, 0.14) 45%,
-    transparent 72%);
-  filter: blur(24px);
+  inset: -10% -3rem; /* overshoots all four edges so glow radiates all around */
+  background: radial-gradient(ellipse at 50% 50%,
+    rgba(138, 148, 255, 0.28) 0%,
+    rgba(138, 148, 255, 0.12) 50%,
+    transparent 75%);
+  filter: blur(20px);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -497,15 +497,14 @@ h2.display--white { color: var(--color-white); }
   overflow: hidden;
   border: 1px solid rgba(158, 168, 255, 0.22);
   background: #f8fafc;
-  /* Soft fade at all edges — blends screenshot into the page.
-     NOTE: mask-image clips box-shadow, so the glow is on the wrapper above. */
+  /* Very subtle edge fade — just softens the hard crop at each edge */
   -webkit-mask-image:
-    linear-gradient(to right,  transparent 0,            black 3.5rem, black calc(100% - 2.5rem), transparent 100%),
-    linear-gradient(to bottom, transparent 0,            black 1.5rem, black calc(100% - 1.5rem), transparent 100%);
+    linear-gradient(to right,  transparent 0, black 1.25rem, black calc(100% - 1.25rem), transparent 100%),
+    linear-gradient(to bottom, transparent 0, black 0.75rem, black calc(100% - 0.75rem), transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to right,  transparent 0,            black 3.5rem, black calc(100% - 2.5rem), transparent 100%),
-    linear-gradient(to bottom, transparent 0,            black 1.5rem, black calc(100% - 1.5rem), transparent 100%);
+    linear-gradient(to right,  transparent 0, black 1.25rem, black calc(100% - 1.25rem), transparent 100%),
+    linear-gradient(to bottom, transparent 0, black 0.75rem, black calc(100% - 0.75rem), transparent 100%);
   mask-composite: intersect;
 }
 
