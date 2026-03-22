@@ -473,6 +473,21 @@ h2.display--white { color: var(--color-white); }
   width: 100%;
 }
 
+/* Glow lives on the wrapper so it isn't clipped by the mask on .hero__mockup */
+.hero__mockup-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 8% -2rem 8% -3rem; /* extends left to spill glow onto the text column */
+  background: radial-gradient(ellipse at 40% 50%,
+    rgba(138, 148, 255, 0.32) 0%,
+    rgba(138, 148, 255, 0.14) 45%,
+    transparent 72%);
+  filter: blur(24px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .hero__mockup-glow { display: none; }
 
 .hero__mockup {
@@ -480,14 +495,10 @@ h2.display--white { color: var(--color-white); }
   z-index: 1;
   border-radius: var(--radius-xl); /* rounded on all four corners */
   overflow: hidden;
-  /* Lavender glow blends into hero background */
-  box-shadow:
-    -4rem 0 6rem 1rem rgba(158, 168, 255, 0.18),
-    0 0 4rem 2rem rgba(158, 168, 255, 0.22),
-    0 24px 64px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(158, 168, 255, 0.22);
   background: #f8fafc;
-  /* Soft fade at all edges — blends screenshot into the page */
+  /* Soft fade at all edges — blends screenshot into the page.
+     NOTE: mask-image clips box-shadow, so the glow is on the wrapper above. */
   -webkit-mask-image:
     linear-gradient(to right,  transparent 0,            black 3.5rem, black calc(100% - 2.5rem), transparent 100%),
     linear-gradient(to bottom, transparent 0,            black 1.5rem, black calc(100% - 1.5rem), transparent 100%);
