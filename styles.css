@@ -465,19 +465,7 @@ h2.display--white { color: var(--color-white); }
   position: relative;
   display: flex;
   align-items: center;
-}
-
-/* Soft white fade on the left edge — blends screenshot into page */
-.hero__visual::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 5rem;
-  height: 100%;
-  background: linear-gradient(to right, white 0%, transparent 100%);
-  z-index: 2;
-  pointer-events: none;
+  padding-right: 1.5rem; /* breathing room so right rounded corner isn't flush to viewport */
 }
 
 .hero__mockup-wrap {
@@ -490,15 +478,24 @@ h2.display--white { color: var(--color-white); }
 .hero__mockup {
   position: relative;
   z-index: 1;
-  border-radius: var(--radius-lg) 0 0 var(--radius-lg); /* no right-side radius — bleeds to edge */
+  border-radius: var(--radius-xl); /* rounded on all four corners */
   overflow: hidden;
-  /* Lavender glow spreads left to blend into the hero background */
+  /* Lavender glow blends into hero background */
   box-shadow:
-    -4rem 0 6rem 1rem rgba(158, 168, 255, 0.2),
-    0 0 4rem 2rem rgba(158, 168, 255, 0.25),
+    -4rem 0 6rem 1rem rgba(158, 168, 255, 0.18),
+    0 0 4rem 2rem rgba(158, 168, 255, 0.22),
     0 24px 64px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(158, 168, 255, 0.25);
+  border: 1px solid rgba(158, 168, 255, 0.22);
   background: #f8fafc;
+  /* Soft fade at all edges — blends screenshot into the page */
+  -webkit-mask-image:
+    linear-gradient(to right,  transparent 0,            black 3.5rem, black calc(100% - 2.5rem), transparent 100%),
+    linear-gradient(to bottom, transparent 0,            black 1.5rem, black calc(100% - 1.5rem), transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right,  transparent 0,            black 3.5rem, black calc(100% - 2.5rem), transparent 100%),
+    linear-gradient(to bottom, transparent 0,            black 1.5rem, black calc(100% - 1.5rem), transparent 100%);
+  mask-composite: intersect;
 }
 
 .hero__mockup img {
@@ -756,7 +753,7 @@ h2.display--white { color: var(--color-white); }
 .hiw-visual {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; /* spread across full container width */
   gap: 0;
   margin-top: 3.5rem;
   flex-wrap: wrap;
@@ -772,9 +769,15 @@ h2.display--white { color: var(--color-white); }
   flex-shrink: 0;
 }
 
+/* Outer columns flex-grow so they anchor to the edges */
+.hiw-visual > .hiw-col:first-child,
+.hiw-visual > .hiw-col:last-child {
+  flex: 1 0 auto;
+}
+
 .hiw-col--ai {
   gap: 0.5rem;
-  width: 112px;
+  flex-shrink: 0;
 }
 
 .hiw-col__name {
@@ -878,12 +881,17 @@ h2.display--white { color: var(--color-white); }
 
 /* ── Flow arrows ── */
 .hiw-flow {
-  flex-shrink: 0;
+  flex: 1 0 60px;      /* grow to fill available horizontal space */
+  max-width: 180px;    /* don't let arrows become absurdly long */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding-bottom: 2.5rem; /* visually align with mid-point of columns */
 }
 
 .hiw-flow__svg {
-  width: 72px;
+  width: 100%;         /* scale with the flex container */
+  max-width: 160px;
   height: 28px;
   display: block;
 }
