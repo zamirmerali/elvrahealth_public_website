@@ -465,7 +465,7 @@ h2.display--white { color: var(--color-white); }
   position: relative;
   display: flex;
   align-items: center;
-  padding-right: 1.5rem; /* breathing room so right rounded corner isn't flush to viewport */
+  /* no right padding — screenshot goes flush to viewport edge */
 }
 
 .hero__mockup-wrap {
@@ -493,17 +493,19 @@ h2.display--white { color: var(--color-white); }
 .hero__mockup {
   position: relative;
   z-index: 1;
-  border-radius: var(--radius-xl); /* rounded on all four corners */
+  /* Round only the left side — right edge goes flush with the viewport */
+  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
   overflow: hidden;
   border: 1px solid rgba(158, 168, 255, 0.22);
+  border-right: none;
   background: #f8fafc;
-  /* Very subtle edge fade — just softens the hard crop at each edge */
+  /* Fade only on the left edge (blend into page) and very subtly top/bottom */
   -webkit-mask-image:
-    linear-gradient(to right,  transparent 0, black 1.25rem, black calc(100% - 1.25rem), transparent 100%),
+    linear-gradient(to right, transparent 0, black 1.5rem, black 100%),
     linear-gradient(to bottom, transparent 0, black 0.75rem, black calc(100% - 0.75rem), transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to right,  transparent 0, black 1.25rem, black calc(100% - 1.25rem), transparent 100%),
+    linear-gradient(to right, transparent 0, black 1.5rem, black 100%),
     linear-gradient(to bottom, transparent 0, black 0.75rem, black calc(100% - 0.75rem), transparent 100%);
   mask-composite: intersect;
 }
