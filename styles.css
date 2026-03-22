@@ -717,7 +717,8 @@ h2.display--white { color: var(--color-white); }
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible; /* let canvas draw into the wave zone below */
+  padding-bottom: 60px; /* extra height so canvas reaches into the wave */
 }
 
 .problem-section__canvas {
@@ -1591,6 +1592,15 @@ h2.display--white { color: var(--color-white); }
   overflow: hidden;
   line-height: 0;
   margin-bottom: -1px;
+}
+
+/* Problem section wave: overlaps the bottom of the yellow section so
+   falling pages render behind it — canvas z-index 5, wave z-index 10 */
+.wave-divider--problem {
+  position: relative;
+  z-index: 10;
+  margin-top: -60px;   /* pull up by the same amount as section padding-bottom */
+  background: transparent; /* yellow section bg shows through above the curve */
 }
 
 .wave-divider svg {

@@ -198,8 +198,11 @@
   </div>
 </section>
 
-<!-- Wave divider: yellow → gray -->
-<div class="wave-divider" style="background:#FFD708;" aria-hidden="true">
+<!-- Wave divider: yellow → gray
+     background:transparent lets the yellow section + falling pages show through
+     above the curve; the white SVG fill masks pages below the curve.
+     margin-top pulls the wave up over the extra padding-bottom on .problem-section. -->
+<div class="wave-divider wave-divider--problem" aria-hidden="true">
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#f9fafb"/>
   </svg>
