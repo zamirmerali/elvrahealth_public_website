@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELvra – Hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; min-height: 100vh; background: #FFD708; }
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #FFD708;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  overflow: hidden;
+}
+
+.eyebrow {
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7a5f00;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 20;
+}
+
+.headline {
+  font-family: 'Figtree', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.08;
+  color: #1a1a1a;
+  text-align: center;
+  max-width: 860px;
+  position: relative;
+  z-index: 20;
+  letter-spacing: -0.025em;
+}
+
+.headline em {
+  font-style: normal;
+  color: #c0000a;
+}
+
+canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+</style>
+</head>
+<body>
+<section class="hero">
+  <p class="eyebrow">Sound familiar?</p>
+  <h1 class="headline">
+    Your team is drowning in referral paperwork.<br>
+    Somewhere in that stack is a patient<br>
+    <em>who can't wait.</em>
+  </h1>
+  <canvas id="c"></canvas>
+</section>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resize();
+window.addEventListener('resize', () => { resize(); init(); });
+
+function rand(a, b) { return a + Math.random() * (b - a); }
+
+const COUNT = 44;
+let papers = [];
+
+class Paper {
+  constructor(isRed, initial) {
+    this.isRed = isRed;
+    this.reset(initial);
+  }
+
+  reset(initial) {
+    const W = canvas.width, H = canvas.height;
+    this.w = rand(68, 128);
+    this.h = rand(88, 155);
+    this.x = rand(-this.w, W + this.w);
+    this.y = initial ? rand(-this.h, H * 0.9) : rand(-this.h - 120, -this.h);
+    this.vy        = rand(1.0, 2.8);
+    this.tick      = initial ? rand(0, 2000) : 0;
+    this.angle     = rand(-0.55, 0.55);
+    this.angleDrift = rand(0.003, 0.009) * (Math.random() < 0.5 ? 1 : -1);
+    this.flutterF  = rand(0.018, 0.038);
+    this.flutterA  = rand(22, 52);
+    this.flutterOff = rand(0, Math.PI * 2);
+    this.curlF     = rand(0.012, 0.028);
+    this.curlOff   = rand(0, Math.PI * 2);
+    this.opacity   = rand(0.80, 0.96);
+  }
+
+  update() {
+    this.tick++;
+    this.y += this.vy;
+    this.x += Math.sin(this.tick * this.flutterF + this.flutterOff) * 0.85;
+    this.angle += this.angleDrift;
+    if (Math.abs(this.angle) > 0.62) this.angleDrift *= -1;
+    if (this.y > canvas.height + this.h + 30) this.reset(false);
+  }
+
+  draw(ctx) {
+    ctx.save();
+    ctx.globalAlpha = this.opacity;
+    ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
+    ctx.rotate(this.angle);
+
+    const curlScale = 0.72 + 0.28 * Math.abs(Math.sin(this.tick * this.curlF + this.curlOff));
+    ctx.scale(curlScale, 1);
+
+    const hw = this.w / 2, hh = this.h / 2;
+    const fold = 18;
+
+    ctx.shadowColor    = this.isRed ? 'rgba(150,0,0,0.22)' : 'rgba(0,0,0,0.15)';
+    ctx.shadowBlur     = 12;
+    ctx.shadowOffsetX  = 3;
+    ctx.shadowOffsetY  = 5;
+
+    ctx.fillStyle = this.isRed ? '#cc0008' : '#ffffff';
+    ctx.beginPath();
+    ctx.moveTo(-hw + 4,  -hh);
+    ctx.lineTo( hw - fold, -hh);
+    ctx.lineTo( hw,        -hh + fold);
+    ctx.lineTo( hw,         hh - 4);
+    ctx.quadraticCurveTo( hw,  hh,  hw - 4,  hh);
+    ctx.lineTo(-hw + 4,   hh);
+    ctx.quadraticCurveTo(-hw,  hh, -hw, hh - 4);
+    ctx.lineTo(-hw,       -hh + 4);
+    ctx.quadraticCurveTo(-hw, -hh, -hw + 4, -hh);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
+
+    ctx.fillStyle = this.isRed ? 'rgba(0,0,0,0.22)' : 'rgba(0,0,0,0.09)';
+    ctx.beginPath();
+    ctx.moveTo(hw - fold, -hh);
+    ctx.lineTo(hw,        -hh + fold);
+    ctx.lineTo(hw - fold, -hh + fold);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.strokeStyle = this.isRed ? 'rgba(0,0,0,0.18)' : 'rgba(0,0,0,0.06)';
+    ctx.lineWidth = 0.7;
+    ctx.beginPath();
+    ctx.moveTo(hw - fold, -hh);
+    ctx.lineTo(hw - fold, -hh + fold);
+    ctx.lineTo(hw,        -hh + fold);
+    ctx.stroke();
+
+    if (!this.isRed) {
+      ctx.strokeStyle = 'rgba(0,0,0,0.065)';
+      ctx.lineWidth = 1;
+      const margin = 13;
+      for (let ly = -hh + 26; ly < hh - 14; ly += 12) {
+        const xEnd = ly < -hh + 27 ? hw - fold - margin : hw - margin;
+        ctx.beginPath();
+        ctx.moveTo(-hw + margin, ly);
+        ctx.lineTo(xEnd, ly);
+        ctx.stroke();
+      }
+    }
+
+    if (this.isRed) {
+      ctx.save();
+      ctx.rotate(-0.2);
+      ctx.strokeStyle = 'rgba(255,255,255,0.65)';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(-30, -12, 60, 24);
+      ctx.fillStyle = 'rgba(255,255,255,0.78)';
+      ctx.font = '900 10px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('URGENT', 0, 0);
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+}
+
+function init() {
+  papers = [];
+  const redIdx = Math.floor(rand(6, COUNT - 6));
+  for (let i = 0; i < COUNT; i++) {
+    papers.push(new Paper(i === redIdx, true));
+  }
+}
+
+init();
+
+(function loop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (const p of papers) { p.update(); p.draw(ctx); }
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

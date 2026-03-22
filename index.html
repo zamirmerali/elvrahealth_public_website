@@ -12,8 +12,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Figtree:wght@800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=11">
 </head>
 <body>
 
@@ -23,10 +23,7 @@
 <nav class="nav" id="nav">
   <div class="container nav__inner">
     <a href="#" class="nav__logo" aria-label="Elvra Health home">
-      <svg class="nav__logo-icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect width="30" height="30" rx="7" fill="#22c55e"/>
-        <path d="M9 15.5L13.5 20L21 10.5" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <img src="assets/logo.png" alt="" class="nav__logo-icon" aria-hidden="true">
       Elvra <span class="nav__logo-sub">&nbsp;Health</span>
     </a>
 
@@ -187,18 +184,17 @@
 </section>
 
 <!-- ================================================
-     PROBLEM SECTION
+     PROBLEM SECTION — animated falling papers
      ================================================ -->
 <section class="problem-section" id="problem">
-  <div class="container">
-
-    <div class="problem-section__header">
-      <span class="eyebrow problem-section__eyebrow">Sound Familiar?</span>
-      <h2 class="problem-section__title">Your team is drowning in referral paperwork. Somewhere in that stack is a patient who can't wait.</h2>
-    </div>
-
-    <object type="image/svg+xml" data="assets/elvra_problem_icons.svg" class="problem-section__icons" aria-label="Three common referral problems: The 28-Page Fax, The Missing Investigation, The Buried Emergency"></object>
-
+  <canvas class="problem-section__canvas" id="problemCanvas" aria-hidden="true"></canvas>
+  <div class="problem-section__content">
+    <p class="eyebrow problem-section__eyebrow">Sound Familiar?</p>
+    <h2 class="problem-section__title">
+      Your team is drowning in referral paperwork.<br>
+      Somewhere in that stack is a patient<br>
+      <em>who can't wait.</em>
+    </h2>
   </div>
 </section>
 
@@ -220,41 +216,147 @@
       <p class="lead lead--center">Elvra plugs into your existing fax and document workflow. No new hardware. No EHR migration. Just clarity.</p>
     </div>
 
-    <ol class="steps-list">
+    <!-- ── How It Works Visual ── -->
+    <div class="hiw-visual reveal">
 
-      <li class="step-item reveal">
-        <span class="step-num">1</span>
-        <div class="step-content">
-          <h3 class="step-title">Instant Referral Extraction</h3>
-          <p class="step-body">Elvra reads every page of an incoming referral, pulling patient demographics, diagnosis, referring physician, and clinical history.</p>
+      <!-- INPUT: Thick referral package -->
+      <div class="hiw-col">
+        <div class="hiw-doc-stack">
+          <div class="hiw-doc-page hiw-doc-page--5"></div>
+          <div class="hiw-doc-page hiw-doc-page--4"></div>
+          <div class="hiw-doc-page hiw-doc-page--3"></div>
+          <div class="hiw-doc-page hiw-doc-page--2"></div>
+          <div class="hiw-doc-page hiw-doc-page--1">
+            <div class="hiw-doc-header">
+              <span class="hiw-doc-fax-tag">FAX</span>
+              <span class="hiw-doc-ref-label">REFERRAL</span>
+            </div>
+            <div class="hiw-doc-line hiw-doc-line--l"></div>
+            <div class="hiw-doc-line hiw-doc-line--m"></div>
+            <div class="hiw-doc-line hiw-doc-line--s"></div>
+            <div class="hiw-doc-line hiw-doc-line--l"></div>
+            <div class="hiw-doc-line hiw-doc-line--m"></div>
+            <div class="hiw-doc-sep"></div>
+            <div class="hiw-doc-line hiw-doc-line--l"></div>
+            <div class="hiw-doc-line hiw-doc-line--m"></div>
+            <div class="hiw-doc-line hiw-doc-line--l"></div>
+            <div class="hiw-doc-line hiw-doc-line--xs"></div>
+            <div class="hiw-doc-sep"></div>
+            <div class="hiw-doc-line hiw-doc-line--m"></div>
+            <div class="hiw-doc-line hiw-doc-line--l"></div>
+            <div class="hiw-doc-line hiw-doc-line--s"></div>
+          </div>
         </div>
-      </li>
-
-      <li class="step-item reveal reveal-delay-1">
-        <span class="step-num">2</span>
-        <div class="step-content">
-          <h3 class="step-title">AI-Generated Summaries</h3>
-          <p class="step-body">Physicians and admins receive a concise, structured summary of every referral. Understand the full clinical picture in under 30 seconds. No more reading 28-page packages.</p>
+        <div class="hiw-badge">
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="1" width="10" height="13" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M5 5h6M5 8h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          28 pages
         </div>
-      </li>
+        <p class="hiw-col__label">Incoming Referral</p>
+      </div>
 
-      <li class="step-item reveal reveal-delay-2">
-        <span class="step-num">3</span>
-        <div class="step-content">
-          <h3 class="step-title">Urgency Triage</h3>
-          <p class="step-body">Elvra applies AI trained on hundreds of specialty referrals to categorize each referral so your booking team always knows what to prioritize and why.</p>
+      <!-- ARROW 1 -->
+      <div class="hiw-flow" aria-hidden="true">
+        <svg class="hiw-flow__svg" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="hiw-flow__dash" d="M0 14 L56 14" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="7 5"/>
+          <polyline points="46,5 62,14 46,23" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- PROCESSOR: Elvra AI -->
+      <div class="hiw-col hiw-col--ai">
+        <div class="hiw-ai">
+          <div class="hiw-ai__ring hiw-ai__ring--outer"></div>
+          <div class="hiw-ai__ring hiw-ai__ring--inner"></div>
+          <div class="hiw-ai__core">
+            <img src="assets/logo.png" alt="Elvra AI" width="56" height="56">
+          </div>
         </div>
-      </li>
+        <p class="hiw-col__name">Elvra AI</p>
+        <ul class="hiw-ai-steps" aria-label="What Elvra does">
+          <li>Reads</li>
+          <li>Extracts</li>
+          <li>Summarizes</li>
+          <li>Recommends</li>
+        </ul>
+      </div>
 
-      <li class="step-item reveal reveal-delay-3">
-        <span class="step-num">4</span>
-        <div class="step-content">
-          <h3 class="step-title">Missing Investigation Alerts</h3>
-          <p class="step-body">Incomplete referrals delay care. Elvra flags missing bloodwork, imaging, or consult notes and prompts your admin team to follow up before the appointment is booked.</p>
+      <!-- ARROW 2 -->
+      <div class="hiw-flow" aria-hidden="true">
+        <svg class="hiw-flow__svg" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="hiw-flow__dash" d="M0 14 L56 14" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="7 5"/>
+          <polyline points="46,5 62,14 46,23" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- OUTPUT: AI Summary card -->
+      <div class="hiw-col">
+        <div class="hiw-summary-card">
+          <div class="hiw-summary-card__bar">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2 6 5 9 10 3"/></svg>
+            Triaged
+          </div>
+          <div class="hiw-summary-card__body">
+
+            <div class="hiw-summary-card__row">
+              <span class="hiw-summary-card__lbl">ID</span>
+              <span class="hiw-summary-card__val">47 M</span>
+            </div>
+
+            <div class="hiw-summary-card__row">
+              <span class="hiw-summary-card__lbl">Chief Complaint</span>
+              <span class="hiw-summary-card__val">Pain shooting down right leg</span>
+            </div>
+
+            <div class="hiw-summary-card__row hiw-summary-card__row--flags">
+              <span class="hiw-summary-card__lbl">Flags</span>
+              <span class="hiw-summary-card__flags">
+                <span class="hiw-flag">⚑ Radicular Leg Pain</span>
+                <span class="hiw-flag">⚑ Severe Lumbar Stenosis</span>
+              </span>
+            </div>
+
+            <div class="hiw-summary-card__row hiw-summary-card__row--imaging">
+              <span class="hiw-summary-card__lbl">Imaging</span>
+              <span class="hiw-summary-card__val">MRI Lumbar Spine, 2026/02/23 — Severe L4/5 stenosis with crowding of cauda equina roots, moderate L3/4 stenosis.</span>
+            </div>
+
+            <div class="hiw-summary-card__row hiw-summary-card__row--rec">
+              <span class="hiw-summary-card__lbl">Recommendation</span>
+              <span class="hiw-summary-card__val">Book <span class="hiw-rec-urgent">Semi-Urgently</span></span>
+            </div>
+
+          </div>
         </div>
-      </li>
+        <p class="hiw-col__label">AI Summary Output</p>
+      </div>
 
-    </ol>
+    </div><!-- /.hiw-visual -->
+
+    <!-- Security strip -->
+    <div class="hiw-security">
+      <svg class="hiw-security__lock" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="11" width="18" height="11" rx="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <span class="hiw-security__label">Security First</span>
+      <span class="hiw-security__sep" aria-hidden="true">·</span>
+      <span class="hiw-security__badge">
+        <svg width="11" height="13" viewBox="0 0 24 28" fill="none" aria-hidden="true">
+          <path d="M12 2L3 6.5V14C3 19.25 6.9 24.14 12 25.5C17.1 24.14 21 19.25 21 14V6.5L12 2Z" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M9 13.5L11 15.5L15 11" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        HIPAA Compliant
+      </span>
+      <span class="hiw-security__sep" aria-hidden="true">·</span>
+      <span class="hiw-security__badge">
+        <svg width="11" height="13" viewBox="0 0 24 28" fill="none" aria-hidden="true">
+          <path d="M12 2L3 6.5V14C3 19.25 6.9 24.14 12 25.5C17.1 24.14 21 19.25 21 14V6.5L12 2Z" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M9 13.5L11 15.5L15 11" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        PHIPA Compliant
+      </span>
+    </div>
+
   </div>
 </section>
 
@@ -322,78 +424,10 @@
   </div>
 </section>
 
-<!-- Wave divider: dark → white -->
+<!-- Wave divider: dark → gray -->
 <div class="wave-divider" style="background:#111827;" aria-hidden="true">
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,40 C360,10 1080,55 1440,20 L1440,60 L0,60 Z" fill="#ffffff"/>
-  </svg>
-</div>
-
-<!-- ================================================
-     COMPLIANCE
-     ================================================ -->
-<section class="section" id="compliance" style="padding-top:4rem;">
-  <div class="container">
-    <div class="section-header">
-      <span class="eyebrow">Trust &amp; Compliance</span>
-      <h2 class="display">Built for the Privacy Standards<br>Healthcare Demands</h2>
-      <p class="lead lead--center">Patient data is sacred. Elvra was designed from the ground up to meet the strictest privacy regulations in North America.</p>
-    </div>
-
-    <div class="compliance__cards">
-
-      <div class="compliance-card reveal">
-        <span class="compliance-card__geo">United States</span>
-        <svg class="compliance-card__shield" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="48" height="48" rx="12" fill="#dcfce7"/>
-          <path d="M24 10L14 14.5V23C14 29.075 18.4 34.74 24 36.25C29.6 34.74 34 29.075 34 23V14.5L24 10Z" fill="#22c55e" opacity="0.3" stroke="#22c55e" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M19.5 23L22.5 26L28.5 20" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <h3 class="compliance-card__title">HIPAA Compliant</h3>
-        <p class="compliance-card__body">Elvra meets all requirements of the Health Insurance Portability and Accountability Act. Patient data is encrypted at rest and in transit, access is strictly role-based, and a complete audit log is maintained for every action on every referral.</p>
-      </div>
-
-      <div class="compliance-card reveal">
-        <span class="compliance-card__geo">Canada</span>
-        <svg class="compliance-card__shield" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="48" height="48" rx="12" fill="#dcfce7"/>
-          <path d="M24 10L14 14.5V23C14 29.075 18.4 34.74 24 36.25C29.6 34.74 34 29.075 34 23V14.5L24 10Z" fill="#22c55e" opacity="0.3" stroke="#22c55e" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M19.5 23L22.5 26L28.5 20" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <h3 class="compliance-card__title">PHIPA Compliant</h3>
-        <p class="compliance-card__body">Elvra complies with Ontario's Personal Health Information Protection Act and aligns with provincial privacy standards across Canada. Your patients' health information stays protected and your clinic stays audit-ready at all times.</p>
-      </div>
-
-    </div>
-
-    <div class="compliance__trust-row reveal">
-      <div class="trust-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
-        End-to-end encryption
-      </div>
-      <div class="trust-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-        </svg>
-        Canadian data residency available
-      </div>
-      <div class="trust-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-        SOC 2 aligned practices
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Wave divider: white → gray -->
-<div class="wave-divider" style="background:white;" aria-hidden="true">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,10 C480,50 960,5 1440,40 L1440,60 L0,60 Z" fill="#f9fafb"/>
+    <path d="M0,40 C360,10 1080,55 1440,20 L1440,60 L0,60 Z" fill="#f9fafb"/>
   </svg>
 </div>
 
@@ -419,7 +453,7 @@
             <div class="testimonial-card__avatar" aria-hidden="true">MK</div>
             <div>
               <div class="testimonial-card__name">Dr. Mihaly Kis</div>
-              <div class="testimonial-card__role">Gastroenterologist &mdash; Private Specialty Clinic &middot; Toronto, ON</div>
+              <div class="testimonial-card__role">Neurosurgeon &mdash; Trillium Health Partners &middot; Mississauga, Ontario</div>
             </div>
           </div>
           <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
@@ -504,33 +538,7 @@
      ================================================ -->
 <footer class="footer" role="contentinfo">
   <div class="container">
-    <div class="footer__grid">
-
-      <div class="footer__brand">
-        <a href="#" class="footer__logo" aria-label="Elvra Health home">
-          <svg width="26" height="26" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="30" height="30" rx="7" fill="#22c55e"/>
-            <path d="M9 15.5L13.5 20L21 10.5" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Elvra Health
-        </a>
-        <p class="footer__tagline">AI-powered referral management for specialty medical clinics. Purpose-built for the way modern clinics work.</p>
-        <div class="footer__compliance">
-          <span class="footer__pill">HIPAA</span>
-          <span class="footer__pill">PHIPA</span>
-        </div>
-      </div>
-
-      <div>
-        <p class="footer__col-title">Product</p>
-        <ul class="footer__links" role="list">
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#compliance">Compliance</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#demo">Book a Demo</a></li>
-        </ul>
-      </div>
+    <div class="footer__grid footer__grid--minimal">
 
       <div>
         <p class="footer__col-title">Company</p>
@@ -550,5 +558,162 @@
 </footer>
 
 <script src="main.js"></script>
+
+<!-- Falling-papers animation for the Sound Familiar section -->
+<script>
+(function () {
+  const canvas = document.getElementById('problemCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    const s = canvas.parentElement;
+    canvas.width  = s.offsetWidth  || window.innerWidth;
+    canvas.height = s.offsetHeight || 480;
+  }
+
+  window.addEventListener('resize', function () { resize(); init(); });
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  const COUNT = 44;
+  let papers = [];
+
+  function Paper(isRed, initial) {
+    this.isRed = isRed;
+    this.reset(initial);
+  }
+
+  Paper.prototype.reset = function (initial) {
+    const W = canvas.width, H = canvas.height;
+    this.w = rand(68, 128);
+    this.h = rand(88, 155);
+    this.x = rand(-this.w, W + this.w);
+    this.y = initial ? rand(-this.h, H * 0.9) : rand(-this.h - 120, -this.h);
+    this.vy         = rand(1.0, 2.8);
+    this.tick       = initial ? rand(0, 2000) : 0;
+    this.angle      = rand(-0.55, 0.55);
+    this.angleDrift = rand(0.003, 0.009) * (Math.random() < 0.5 ? 1 : -1);
+    this.flutterF   = rand(0.018, 0.038);
+    this.flutterA   = rand(22, 52);
+    this.flutterOff = rand(0, Math.PI * 2);
+    this.curlF      = rand(0.012, 0.028);
+    this.curlOff    = rand(0, Math.PI * 2);
+    this.opacity    = rand(0.80, 0.96);
+  };
+
+  Paper.prototype.update = function () {
+    this.tick++;
+    this.y += this.vy;
+    this.x += Math.sin(this.tick * this.flutterF + this.flutterOff) * 0.85;
+    this.angle += this.angleDrift;
+    if (Math.abs(this.angle) > 0.62) this.angleDrift *= -1;
+    if (this.y > canvas.height + this.h + 30) this.reset(false);
+  };
+
+  Paper.prototype.draw = function (ctx) {
+    ctx.save();
+    ctx.globalAlpha = this.opacity;
+    ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
+    ctx.rotate(this.angle);
+
+    const curlScale = 0.72 + 0.28 * Math.abs(Math.sin(this.tick * this.curlF + this.curlOff));
+    ctx.scale(curlScale, 1);
+
+    const hw = this.w / 2, hh = this.h / 2;
+    const fold = 18;
+
+    ctx.shadowColor   = this.isRed ? 'rgba(150,0,0,0.22)' : 'rgba(0,0,0,0.15)';
+    ctx.shadowBlur    = 12;
+    ctx.shadowOffsetX = 3;
+    ctx.shadowOffsetY = 5;
+
+    ctx.fillStyle = this.isRed ? '#cc0008' : '#ffffff';
+    ctx.beginPath();
+    ctx.moveTo(-hw + 4,  -hh);
+    ctx.lineTo( hw - fold, -hh);
+    ctx.lineTo( hw,        -hh + fold);
+    ctx.lineTo( hw,         hh - 4);
+    ctx.quadraticCurveTo( hw,  hh,  hw - 4,  hh);
+    ctx.lineTo(-hw + 4,   hh);
+    ctx.quadraticCurveTo(-hw,  hh, -hw, hh - 4);
+    ctx.lineTo(-hw,       -hh + 4);
+    ctx.quadraticCurveTo(-hw, -hh, -hw + 4, -hh);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
+
+    ctx.fillStyle = this.isRed ? 'rgba(0,0,0,0.22)' : 'rgba(0,0,0,0.09)';
+    ctx.beginPath();
+    ctx.moveTo(hw - fold, -hh);
+    ctx.lineTo(hw,        -hh + fold);
+    ctx.lineTo(hw - fold, -hh + fold);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.strokeStyle = this.isRed ? 'rgba(0,0,0,0.18)' : 'rgba(0,0,0,0.06)';
+    ctx.lineWidth = 0.7;
+    ctx.beginPath();
+    ctx.moveTo(hw - fold, -hh);
+    ctx.lineTo(hw - fold, -hh + fold);
+    ctx.lineTo(hw,        -hh + fold);
+    ctx.stroke();
+
+    if (!this.isRed) {
+      ctx.strokeStyle = 'rgba(0,0,0,0.065)';
+      ctx.lineWidth = 1;
+      const margin = 13;
+      for (let ly = -hh + 26; ly < hh - 14; ly += 12) {
+        const xEnd = ly < -hh + 27 ? hw - fold - margin : hw - margin;
+        ctx.beginPath();
+        ctx.moveTo(-hw + margin, ly);
+        ctx.lineTo(xEnd, ly);
+        ctx.stroke();
+      }
+    }
+
+    if (this.isRed) {
+      ctx.save();
+      ctx.rotate(-0.2);
+      ctx.strokeStyle = 'rgba(255,255,255,0.65)';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(-30, -12, 60, 24);
+      ctx.fillStyle = 'rgba(255,255,255,0.78)';
+      ctx.font = '900 10px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('URGENT', 0, 0);
+      ctx.restore();
+    }
+
+    ctx.restore();
+  };
+
+  function init() {
+    papers = [];
+    const redIdx = Math.floor(rand(6, COUNT - 6));
+    for (let i = 0; i < COUNT; i++) {
+      papers.push(new Paper(i === redIdx, true));
+    }
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < papers.length; i++) {
+      papers[i].update();
+      papers[i].draw(ctx);
+    }
+    requestAnimationFrame(loop);
+  }
+
+  // Wait for full layout before sizing the canvas and starting animation
+  window.addEventListener('load', function () {
+    resize();
+    init();
+    loop();
+  });
+})();
+</script>
 </body>
 </html>
