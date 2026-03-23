@@ -1670,6 +1670,33 @@ h2.display--white { color: var(--color-white); }
 
   .hero__title { font-size: 2.25rem; }
 
+  /* ── HIW infographic: stack vertically on mobile ── */
+  .hiw-visual {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    row-gap: 0;
+  }
+
+  /* Outer columns no longer grow — just centre themselves */
+  .hiw-visual > .hiw-col:first-child,
+  .hiw-visual > .hiw-col:last-child {
+    flex: 0 0 auto;
+  }
+
+  /* Rotate the flow arrows 90° so they point down */
+  .hiw-flow {
+    transform: rotate(90deg);
+    margin: 0.25rem 0;
+  }
+
+  /* Shrink the document stack slightly on small screens */
+  .hiw-doc-stack { width: 108px; height: 140px; }
+  .hiw-doc-page  { width: 108px; height: 140px; }
+
+  /* Summary card: let it breathe at full mobile width */
+  .hiw-summary-card { width: min(240px, 90vw); }
+
   .compliance__cards { grid-template-columns: 1fr; }
 
   .compliance__trust-row {
