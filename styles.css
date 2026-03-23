@@ -1674,8 +1674,7 @@ h2.display--white { color: var(--color-white); }
   .hiw-visual {
     flex-direction: column;
     align-items: center;
-    gap: 0;
-    row-gap: 0;
+    gap: 1.5rem;
   }
 
   /* Outer columns no longer grow — just centre themselves */
@@ -1684,10 +1683,36 @@ h2.display--white { color: var(--color-white); }
     flex: 0 0 auto;
   }
 
-  /* Rotate the flow arrows 90° so they point down */
+  /* Replace horizontal SVG arrows with a compact vertical CSS arrow */
   .hiw-flow {
-    transform: rotate(90deg);
-    margin: 0.25rem 0;
+    flex: none;
+    width: auto;
+    max-width: none;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .hiw-flow__svg { display: none; }
+
+  /* Vertical stem */
+  .hiw-flow::before {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 24px;
+    background: #22c55e;
+  }
+  /* Downward arrowhead */
+  .hiw-flow::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #22c55e;
   }
 
   /* Shrink the document stack slightly on small screens */
@@ -1695,7 +1720,7 @@ h2.display--white { color: var(--color-white); }
   .hiw-doc-page  { width: 108px; height: 140px; }
 
   /* Summary card: let it breathe at full mobile width */
-  .hiw-summary-card { width: min(240px, 90vw); }
+  .hiw-summary-card { width: min(260px, 90vw); }
 
   .compliance__cards { grid-template-columns: 1fr; }
 
