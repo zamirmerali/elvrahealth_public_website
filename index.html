@@ -77,103 +77,12 @@
       <div class="hero__mockup-wrap">
         <div class="hero__mockup-glow"></div>
         <div class="hero__mockup">
-          <!-- Real screenshot shown when file exists -->
           <img
             src="assets/screenshot.png"
             alt="Elvra Health dashboard showing referral triage interface"
             id="heroScreenshot"
-            style="display:none;"
-            onload="this.style.display='block'; document.getElementById('uiMockup').style.display='none';"
+            fetchpriority="high"
           >
-          <!-- Inline HTML UI mockup (shown until screenshot.png is placed) -->
-          <div class="ui-mockup" id="uiMockup">
-            <!-- Top bar -->
-            <div class="ui-mockup__topbar">
-              <div class="ui-mockup__logo">
-                <div class="ui-mockup__logo-dot">
-                  <svg width="8" height="8" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                Elvra Health &nbsp;·&nbsp; Referral Triage
-              </div>
-              <div class="ui-mockup__nav">
-                <span class="ui-mockup__nav-item active">Dashboard</span>
-                <span class="ui-mockup__nav-item">Analytics</span>
-                <span class="ui-mockup__nav-item">Settings</span>
-              </div>
-              <div class="ui-mockup__user">
-                <svg width="8" height="8" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                Dr. Smith &nbsp;▾
-              </div>
-            </div>
-
-            <!-- Toolbar -->
-            <div class="ui-mockup__body">
-              <div class="ui-mockup__toolbar">
-                <div class="ui-mockup__tabs">
-                  <span class="ui-mockup__tab active">All — 5</span>
-                  <span class="ui-mockup__tab">Error — 0</span>
-                  <span class="ui-mockup__tab green">Triaged — 3</span>
-                  <span class="ui-mockup__tab amber">Triaging — 2</span>
-                  <span class="ui-mockup__tab red">Urgent — 1</span>
-                </div>
-                <div class="ui-mockup__actions">
-                  <button class="ui-mockup__btn ui-mockup__btn--green">AI Draft Triage</button>
-                  <button class="ui-mockup__btn ui-mockup__btn--outline">Upload PDF</button>
-                </div>
-              </div>
-
-              <!-- Table -->
-              <table class="ui-mockup__table">
-                <thead>
-                  <tr>
-                    <th class="ui-mockup__th" style="width:18%">Status</th>
-                    <th class="ui-mockup__th" style="width:18%">Patient Name</th>
-                    <th class="ui-mockup__th" style="width:16%">File</th>
-                    <th class="ui-mockup__th" style="width:14%">Urgency</th>
-                    <th class="ui-mockup__th">Referral Summary</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="ui-mockup__tr">
-                    <td class="ui-mockup__td"><span class="ui-mockup__status ui-mockup__status--triaged">✓ Triaged</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__patient">Matossian, T.</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__filename">referral9.pdf</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__urgency ui-mockup__urgency--semi">Semi-urgent</span></td>
-                    <td class="ui-mockup__td"><div class="ui-mockup__summary-text">Consult for 6mm frontal lobe cavernoma. Patient presents with seizures, neurology follow-up recommended.</div></td>
-                  </tr>
-                  <tr class="ui-mockup__tr">
-                    <td class="ui-mockup__td"><span class="ui-mockup__status ui-mockup__status--triaged">✓ Triaged</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__patient">Hart, A. J.</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__filename">referral8.pdf</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__urgency ui-mockup__urgency--semi">Semi-urgent</span></td>
-                    <td class="ui-mockup__td"><div class="ui-mockup__summary-text">Bilateral leg pain / discomfort. Likely spinal stenosis. MRI lumbar spine pending review.</div></td>
-                  </tr>
-                  <tr class="ui-mockup__tr">
-                    <td class="ui-mockup__td"><span class="ui-mockup__status ui-mockup__status--triaging">⟳ Triaging</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__patient">—</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__filename">referral3.pdf</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__urgency" style="background:#f3f4f6;color:#6b7280;">—</span></td>
-                    <td class="ui-mockup__td"><div class="ui-mockup__summary-text" style="color:#d1d5db;">Generating summary…</div></td>
-                  </tr>
-                  <tr class="ui-mockup__tr">
-                    <td class="ui-mockup__td"><span class="ui-mockup__status ui-mockup__status--triaged">✓ Triaged</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__patient">Ali, Kharoon</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__filename">referral10.pdf</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__urgency ui-mockup__urgency--urgent">Urgent</span></td>
-                    <td class="ui-mockup__td"><div class="ui-mockup__summary-text">Left foot drop &amp; severe spinal stenosis on MRI. Motor weakness noted. Urgent surgical consult advised.</div></td>
-                  </tr>
-                  <tr class="ui-mockup__tr">
-                    <td class="ui-mockup__td"><span class="ui-mockup__status ui-mockup__status--triaged">✓ Triaged</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__patient">Johal, Preet</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__filename">referral7.pdf</span></td>
-                    <td class="ui-mockup__td"><span class="ui-mockup__urgency ui-mockup__urgency--routine">Routine</span></td>
-                    <td class="ui-mockup__td"><div class="ui-mockup__summary-text">Chronic low back pain, 12 months duration. Conservative treatment tried. Requesting physiotherapy assessment.</div></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <!-- End UI mockup -->
         </div>
       </div>
     </div>
