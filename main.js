@@ -74,7 +74,7 @@ document.addEventListener('click', e => {
 
 // ── 4. Demo form submission ───────────────────────────────────────
 // After signing up at formspree.io, replace the ID below with your form's endpoint ID.
-const FORMSPREE_URL = 'https://formspree.io/f/REPLACE_WITH_YOUR_ID';
+const FORMSPREE_URL = 'https://formspree.io/f/mdawqdkr';
 
 const demoForm = document.getElementById('demoForm');
 const formSuccess = document.getElementById('formSuccess');
