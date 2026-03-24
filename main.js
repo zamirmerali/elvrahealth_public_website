@@ -73,34 +73,64 @@ document.addEventListener('click', e => {
 
 
 // ── 4. Demo form submission ───────────────────────────────────────
+// After signing up at formspree.io, replace the ID below with your form's endpoint ID.
+const FORMSPREE_URL = 'https://formspree.io/f/REPLACE_WITH_YOUR_ID';
+
 const demoForm = document.getElementById('demoForm');
 const formSuccess = document.getElementById('formSuccess');
 
-demoForm.addEventListener('submit', e => {
+demoForm.addEventListener('submit', async e => {
   e.preventDefault();
 
-  // Basic validation
+  // Validate required fields
   const inputs = demoForm.querySelectorAll('input[required]');
   let valid = true;
-
   inputs.forEach(input => {
     if (!input.value.trim()) {
       valid = false;
       input.style.borderColor = '#ef4444';
-      input.addEventListener('input', () => {
-        input.style.borderColor = '';
-      }, { once: true });
+      input.addEventListener('input', () => { input.style.borderColor = ''; }, { once: true });
     }
   });
-
   if (!valid) return;
 
-  // Hide form, show success
-  demoForm.style.display = 'none';
-  formSuccess.classList.add('visible');
+  // Loading state
+  const btn = demoForm.querySelector('[type="submit"]');
+  const originalText = btn.textContent;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
 
-  // Scroll success message into view
-  formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  try {
+    const res = await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name:    demoForm.name.value,
+        company: demoForm.company.value,
+        email:   demoForm.email.value,
+        phone:   demoForm.phone.value,
+      }),
+    });
+
+    if (res.ok) {
+      demoForm.style.display = 'none';
+      formSuccess.classList.add('visible');
+      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      throw new Error('non-ok response');
+    }
+  } catch {
+    // Restore button and show error
+    btn.textContent = originalText;
+    btn.disabled = false;
+    let errEl = demoForm.querySelector('.demo-form__error');
+    if (!errEl) {
+      errEl = document.createElement('p');
+      errEl.className = 'demo-form__error';
+      errEl.textContent = 'Something went wrong — please try again or email us at zamir@elvrahealth.com.';
+      demoForm.querySelector('.demo-form__submit').after(errEl);
+    }
+  }
 });
 
 

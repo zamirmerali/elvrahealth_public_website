@@ -1310,6 +1310,14 @@ h2.display--white { color: var(--color-white); }
   margin-top: 1rem;
 }
 
+.demo-form__error {
+  color: #ef4444;
+  font-size: 0.8125rem;
+  margin-top: 0.75rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
 .demo-form__success {
   display: none;
   text-align: center;
